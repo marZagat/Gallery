@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 
-mongoose.connect('mongodb://database/photos');
+mongoose.connect('mongodb://localhost/photos');
 
 const Photos = require('../database/index.js');
 
@@ -36,6 +36,6 @@ app.get('/api/restaurants/:id/gallery', (req, res) => {
   });
 });
 
-app.listen(3001, () => console.log('Gallery App listening on port 3001!'));
+app.listen(2222, () => console.log('Gallery App listening on port 2222!'));
 
 module.exports = app;

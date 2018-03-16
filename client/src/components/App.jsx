@@ -35,6 +35,7 @@ export default class App extends React.Component {
           data: response.data[0],
           siteName: response.data[0].place_name,
         });
+        alert('complete');
         console.log('client received data from id: ', id);
       })
       .then(() => {

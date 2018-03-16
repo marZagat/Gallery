@@ -4,10 +4,11 @@ const rp = require('request-promise')
 const Photos = ('./database/index.js');
 const IDS = require('./weGotData.js');
 const fs = require('fs');
+const API_KEY = require('../config.js');
 
 mongoose.connect('mongodb://localhost/photos');
 
-const API_KEY = 'AIzaSyCjAQ33tNqsfUoF1CV0TDw8GcoHqSf3dgo';
+const API_KEY = API_KEY.KEY;
 
 const API_URL = 'https://maps.googleapis.com/maps/api/place/details/json?placeid=';
 

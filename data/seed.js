@@ -1,13 +1,15 @@
 const data = require('./allData.js');
 const mongoose = require('mongoose');
 const Photos = require('../database/index.js');
-const API_KEY = 'AIzaSyCjAQ33tNqsfUoF1CV0TDw8GcoHqSf3dgo';
+// const API_KEY = 'AIzaSyCjAQ33tNqsfUoF1CV0TDw8GcoHqSf3dgo';
+const API_KEY = require('../config.js');
 
-mongoose.connect('mongodb://database/photos', (err) => {
+mongoose.connect('mongodb://localhost/photos', (err) => {
   if (err) {
     throw err;
   } else {
     console.log('mongoose connected');
+    console.log('API ', API_KEY.KEY);
   }
 });
 
@@ -28,7 +30,7 @@ function seedDb() {
 
         for (let i = 0; i < photos.length; i += 1) {
           const photoRef = photos[i].photo_reference;
-          const photoUrl = `${PHOTOS_URL}${photoRef}&key=${API_KEY}`;
+          const photoUrl = `${PHOTOS_URL}${photoRef}&key=${API_KEY.KEY}`;
           const details = {
             ref: photoRef,
             url: photoUrl,
@@ -67,6 +69,7 @@ function seedDb() {
     }
   });
 }
+
 
 seedDb(data);
 
