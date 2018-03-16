@@ -1,35 +1,31 @@
-const helper = require('helper.js');
+const helper = require('./helpers.js');
 const faker = require('faker');
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/photos', (err) => {
-  if (err) {
-    throw err;
-  }
-  console.log('mongoose good to go');
+mongoose.connect('mongodb://localhost/photos');
+
+//model schemas
+const PhotosSchema = mongoose.Schema({
+  url: String,
+  width: Number,
+  height: Number,
 });
 
+const ReviewSchema = mongoose.Schema({
+  name: String,
+  avatar: String,
+});
 
-//model schema
+const photoSchema = mongoose.Schema({
+  place_id: Number,
+  place_name: String,
+  photos: [PhotosSchema],
+  reviews: [ReviewSchema],
+});
 
-// const PhotosSchema = mongoose.Schema({
-//   ref: String,
-//   url: String,
-//   width: Number,
-//   height: Number,
-// });
+const Photos = mongoose.model('Photos', photoSchema);
 
-// const ReviewSchema = mongoose.Schema({
-//   name: String,
-//   avatar: String,
-// });
-
-// const photoSchema = mongoose.Schema({
-//   place_id: {
-//     type: String,
-//     unique: true,
-//   },
-//   place_name: String,
-//   photos: [PhotosSchema],
-//   reviews: [ReviewSchema],
-// });
+module.exports.PhotosSchema = PhotosSchema;
+module.exports.ReviewSchema = ReviewSchema;
+module.exports.photoSchema = photoSchema;
+module.exports.Photos = Photos;
