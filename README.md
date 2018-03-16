@@ -23,6 +23,9 @@ This service forms a part of the WeGot food review website. It renders 6 recomme
 #Database
 A MongoDB database that holds restaurant information.
 
+#Seeding 
+Seeding the database can be done in two methods. First method will be by moving to the new_data folder and running "node seed.js" and this is assuming you have the mongodb connection already established with the commands mongod and mongo. Version two will require three terminal windows as you'll need go to the new_data folder in each window and run "node seed1.js" in one, node "seed2.js" in the next and finally "node seed3.js" in the last one. All terminals must be running node 9.7.0 or the latest version of node that can has updates for es7 syntax.
+
 #Prerequisites
 -npm -node -jest -webpack -MongoDB
 
