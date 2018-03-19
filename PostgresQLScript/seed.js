@@ -42,7 +42,7 @@ const insertPhotos = (start) => {
     data.push(generateData.generatePhotos(i, dataSize));
   }
   const cs = new pgp.helpers.ColumnSet(
-    ['id', 'url1', 'url2','url3','url4','url5','url6','url7','url8','url9','url10'],
+    ['id', 'url1', 'url2','url3','url4','url5','url6','url7','url8','url9','url10', 'photo_id'],
     { table: 'photos' },
   );
 
@@ -63,7 +63,7 @@ const insertDimensions = (start) => {
     data.push(generateData.generateDimensions(i, dataSize));
   }
   const cs = new pgp.helpers.ColumnSet(
-    ['id', 'width', 'height'],
+    ['id', 'width', 'height', 'dimension_id'],
     { table: 'dimensions' },
   );
 
@@ -84,7 +84,7 @@ const insertUsers = (start) => {
     data.push(generateData.generateUsers(i, dataSize));
   }
   const cs = new pgp.helpers.ColumnSet(
-    ['id', 'name'],
+    ['id', 'name', 'user_id'],
     { table: 'users' },
   );
 
@@ -105,7 +105,7 @@ const insertAvatars = (start) => {
     data.push(generateData.generateAvatars(i, dataSize));
   }
   const cs = new pgp.helpers.ColumnSet(
-    ['id', 'name'],
+    ['id', 'name', 'avatar_id'],
     { table: 'avatars' },
   );
 
@@ -137,7 +137,7 @@ const createRestaurant = () => {
 
 const createPhotos = () => {
   dbt.none(`CREATE TABLE photos(id INTEGER PRIMARY KEY, url1 TEXT, url2 TEXT, url3 TEXT, url4 TEXT, url5 TEXT,
-    url6 TEXT, url7 TEXT, url8 TEXT, url9 TEXT, url10 TEXT, REFERENCE restaurant);`)
+    url6 TEXT, url7 TEXT, url8 TEXT, url9 TEXT, url10 TEXT, photo_id INTEGER REFERENCE restaurant);`)
     .then((data) => {
       console.log('photos table successfully created');
     })
@@ -152,7 +152,7 @@ const createPhotos = () => {
 }
 
 const createDimensions = () => {
-  dbt.none(`CREATE TABLE dimensions(id INTEGER PRIMARY KEY, height INTEGER, width INTEGER, REFERENCE photos);`)
+  dbt.none(`CREATE TABLE dimensions(id INTEGER PRIMARY KEY, height INTEGER, width INTEGER, dimension_id INTEGER REFERENCE photos);`)
     .then((data) => {
       console.log('dimensions table successfully created');
     })
@@ -167,7 +167,7 @@ const createDimensions = () => {
 }
 
 const createUsers = () => {
-  dbt.none(`CREATE TABLE users(id INTEGER PRIMARY KEY, name TEXT, REFERENCE restaurant);`)
+  dbt.none(`CREATE TABLE users(id INTEGER PRIMARY KEY, name TEXT, user_id INTEGER REFERENCE restaurant);`)
     .then((data) => {
       console.log('users table successfully created');
     })
@@ -183,7 +183,7 @@ const createUsers = () => {
 
 const createAvatars = () => {
   dbt.none(`CREATE TABLE avatars(id INTEGER PRIMARY KEY, url1 TEXT, url2 TEXT, 
-    url3 TEXT, url4 TEXT, url5 TEXT, REFERENCE users);`)
+    url3 TEXT, url4 TEXT, url5 TEXT, avatar_id INTEGER REFERENCE users);`)
     .then((data) => {
       console.log('avatars table successfully created');
     })

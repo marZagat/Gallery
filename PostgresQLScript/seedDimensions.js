@@ -21,7 +21,7 @@ const insertDimensions = (start) => {
     data.push(generateData.generateDimensions(i, dataSize));
   }
   const cs = new pgp.helpers.ColumnSet(
-    ['id', 'width', 'height'],
+    ['id', 'width', 'height', 'dimension_id'],
     { table: 'dimensions' },
   );
 
@@ -37,7 +37,7 @@ const insertDimensions = (start) => {
 };
 
 const createDimensions = () => {
-  dbt.none(`CREATE TABLE dimensions(id INTEGER PRIMARY KEY, height INTEGER, width INTEGER, REFERENCE photos);`)
+  dbt.none(`CREATE TABLE dimensions(id INTEGER PRIMARY KEY, height INTEGER, width INTEGER, dimension_id INTEGER REFERENCES photos);`)
     .then((data) => {
       console.log('dimensions table successfully created');
     })
