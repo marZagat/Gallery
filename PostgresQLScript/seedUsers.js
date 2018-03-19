@@ -21,7 +21,7 @@ const insertUsers = (start) => {
     data.push(generateData.generateUsers(i, dataSize));
   }
   const cs = new pgp.helpers.ColumnSet(
-    ['id', 'name'],
+    ['id', 'name', 'user_id'],
     { table: 'users' },
   );
 
@@ -37,7 +37,7 @@ const insertUsers = (start) => {
 };
 
 const createUsers = () => {
-  dbt.none(`CREATE TABLE users(id INTEGER PRIMARY KEY, name TEXT, REFERENCE restaurant);`)
+  dbt.none(`CREATE TABLE users(id INTEGER PRIMARY KEY, name TEXT, user_id INTEGER REFERENCES restaurant);`)
     .then((data) => {
       console.log('users table successfully created');
     })

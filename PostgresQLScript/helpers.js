@@ -23,6 +23,7 @@ let generatePhotos = (id, size) => {
   obj.url8 = generate.URL();
   obj.url9 = generate.URL();
   obj.url10 = generate.URL();
+  obj.photo_id = id;
   return obj;
 };
 
@@ -33,6 +34,7 @@ let generateDimensions = (id, size) => {
   obj.id = id;
   obj.width = totalDimensions[0];
   obj.height = totalDimensions[1];
+  obj.dimension_id = id;
   return obj;
 };
 
@@ -41,6 +43,7 @@ let generateUsers = (id, size) => {
 
   obj.id = id;
   obj.name = `${faker.name.firstName()} ${faker.name.lastName()}`;
+  obj.user_id = id;
   return obj;
 };
 
@@ -53,6 +56,7 @@ let generateAvatars = (id, size) => {
   obj.url3 = generate.avatars();
   obj.url4 = generate.avatars();
   obj.url5 = generate.avatars();
+  obj.avatar_id = id;
   return obj;
 }
 

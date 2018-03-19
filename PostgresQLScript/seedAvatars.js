@@ -21,7 +21,7 @@ const insertAvatars = (start) => {
     data.push(generateData.generateAvatars(i, dataSize));
   }
   const cs = new pgp.helpers.ColumnSet(
-    ['id', 'url1', 'url2', 'url3', 'url4', 'url5'],
+    ['id', 'url1', 'url2', 'url3', 'url4', 'url5', 'avatar_id'],
     { table: 'avatars' },
   );
 
@@ -38,7 +38,7 @@ const insertAvatars = (start) => {
 
 const createAvatars = () => {
   dbt.none(`CREATE TABLE avatars(id INTEGER PRIMARY KEY, url1 TEXT, url2 TEXT, 
-    url3 TEXT, url4 TEXT, url5 TEXT, REFERENCE users);`)
+    url3 TEXT, url4 TEXT, url5 TEXT, avatar_id INTEGER REFERENCES users);`)
     .then((data) => {
       console.log('avatars table successfully created');
     })

@@ -21,7 +21,7 @@ const insertPhotos = (start) => {
     data.push(generateData.generatePhotos(i, dataSize));
   }
   const cs = new pgp.helpers.ColumnSet(
-    ['id', 'url1', 'url2','url3','url4','url5','url6','url7','url8','url9','url10'],
+    ['id', 'url1', 'url2','url3','url4','url5','url6','url7','url8','url9','url10', 'photo_id'],
     { table: 'photos' },
   );
 
@@ -38,7 +38,7 @@ const insertPhotos = (start) => {
 
 const createPhotos = () => {
   dbt.none(`CREATE TABLE photos(id INTEGER PRIMARY KEY, url1 TEXT, url2 TEXT, url3 TEXT, url4 TEXT, url5 TEXT,
-    url6 TEXT, url7 TEXT, url8 TEXT, url9 TEXT, url10 TEXT, REFERENCE restaurant);`)
+    url6 TEXT, url7 TEXT, url8 TEXT, url9 TEXT, url10 TEXT, photo_id INTEGER REFERENCES restaurant);`)
     .then((data) => {
       console.log('photos table successfully created');
     })
