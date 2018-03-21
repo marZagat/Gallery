@@ -23,12 +23,14 @@ let items = (id) => {
   });
 }
 
+let id_gen = 6680001;
 let create = async () => {
-  let id_gen = 6680001;
   for (let i = 0; i < 334; i++) {
     await items(id_gen);
     console.log(`done with ${i}`);
+    id_gen = id_gen + 10000;
   }
+  client.close();
 }
 
 create()

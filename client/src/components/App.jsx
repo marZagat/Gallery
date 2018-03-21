@@ -8,7 +8,8 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      data: [],
+      // data: [],
+      data: {},
       siteName: '',
       reviews: [],
       photos: [],
@@ -31,10 +32,12 @@ export default class App extends React.Component {
 
     axios.get(`/api/restaurants/${id}/gallery`)
       .then((response) => {
+        console.log(response);
         context.setState({
-          data: response.data[0],
-          siteName: response.data[0].place_name,
+          data: response.data,
+          siteName: response.data.place_name,
         });
+        console.log(this.state);
         alert('complete');
         console.log('client received data from id: ', id);
       })

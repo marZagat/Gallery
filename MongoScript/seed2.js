@@ -23,15 +23,17 @@ let items = (id) => {
   });
 }
 
+let id_gen = 3340001;
 let create = async () => {
-  let id_gen = 3340001;
   for (let i = 0; i < 334; i++) {
     await items(id_gen);
     console.log(`done with ${i}`);
+    id_gen = id_gen + 10000;
   }
+  client.close();
 }
 
-create()
+create();
 
 console.log('done seeding');
 // db.close();

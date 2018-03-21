@@ -4,8 +4,13 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
+const utility = require('../MongoScript/MongoQuery/utility.js');
+const MongoClient = require('mongodb').MongoClient;
 
-mongoose.connect('mongodb://localhost/photos');
+//connect to MongoClient
+MongoClient.connect('mongodb://localhost:27017');
+
+// mongoose.connect('mongodb://localhost/photos');
 
 const Photos = require('../database/index.js');
 
@@ -19,19 +24,34 @@ app.use(bodyParser.json());
 app.use('/restaurants/:id', express.static(path.join(__dirname, '../client/dist')));
 
 // if no ID typed into url bar, redirect to this ID
-app.get('/', (req, res) => {
-  res.status(200).redirect('/restaurants/ChIJUcXYWWGAhYARmjMY2bJAG2s');
-});
+// app.get('/', (req, res) => {
+//   res.status(200).redirect('/restaurants/ChIJUcXYWWGAhYARmjMY2bJAG2s');
+// });
 
 // retrieve data from API(db)
+// app.get('/api/restaurants/:id/gallery', (req, res) => {
+//   const id = req.params.id;
+//   console.log('server querying for id: ', id)
+//   Photos.findOne(id, (err, data) => {
+//     if (err) {
+//       res.sendStatus(500);
+//     } else {
+//       res.json(data);
+//     }
+//   });
+// });
+
+//retrieve data using new database
 app.get('/api/restaurants/:id/gallery', (req, res) => {
-  const id = req.params.id;
-  console.log('server querying for id: ', id)
-  Photos.findOne(id, (err, data) => {
+  let id = req.params.id;
+  
+  utility.fetchOne(id, (err, data) => {
     if (err) {
-      res.sendStatus(500);
+      console.log(`encountered internal server error`);
+      res.status(500);
     } else {
-      res.json(data);
+      console.log('this is data: ', data); // debugging
+      res.status(200).send(data);
     }
   });
 });

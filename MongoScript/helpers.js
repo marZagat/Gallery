@@ -1,4 +1,5 @@
 const faker = require('faker');
+const MongoClient = require('mongodb').MongoClient;
 
 //generate random width
 let dimensions = () => {
@@ -73,6 +74,7 @@ let generate = (id) => {
     for (let k = 0; k < 10000; k++) {
       let item = {
         place_id: id,
+        photo_id: id,
         place_name: faker.company.companyName(),
         photos: [],
         reviews: []
@@ -119,6 +121,7 @@ let generate2 = (id) => {
     for (let k = 0; k < 10000; k++) {
       let item = {
         place_id: id,
+        photo_id: id,
         place_name: faker.company.companyName(),
         photos: [],
         reviews: []
@@ -165,6 +168,7 @@ let generate3 = (id) => {
     for (let k = 0; k < 10000; k++) {
       let item = {
         place_id: id,
+        photo_id: id,
         place_name: faker.company.companyName(),
         photos: [],
         reviews: []
