@@ -22,17 +22,30 @@ let items = (id) => {
     });
   });
 }
-
+let id_gen = 0;
 let create = async() => {
-  let id_gen = 0;
   for (let i = 0; i < 334; i++) {
     await items(id_gen);
     console.log(`done with ${i}`);
+    id_gen = id_gen + 10000;
   }
+  client.close();
 }
 
-create()
+create();
+
+// let addIndex = async () => {
+//   await create();
+//   db.collection('photos').createIndex({'place_id': 1});
+//   console.log('added indexes');
+// }
+
+// addIndex();
 
 console.log('done seeding');
-// db.close();
+// let closeConnection = async () => {
+//   await create();
+//   client.close();
+// }
+// closeConnection();
 });

@@ -33,7 +33,6 @@ let querying = (id) => {
 //async function which will log a start time and and end time when the async call is completed
 let testQueryTimes = async() => {
   let start = new Date().getTime();
-  console.log(start);
   let end;
   let time;
   for (let i = 0; i < 1; i++) {
