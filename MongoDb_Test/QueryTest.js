@@ -109,7 +109,7 @@ MongoClient.connect(url, (err, client, db) => {
     await test100QueryTimes();
     await test1000QueryTimes();
     await test100000QueryTimes();
-    // await test1000000QueryTimes();
+    await test1000000QueryTimes();
     console.log('finished executing all query test functions');
   }
 
