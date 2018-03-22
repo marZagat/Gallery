@@ -30,6 +30,24 @@ let querying = (id) => {
   });
 }
 
+let querying1x = (id) => {
+  dbt.any(`SELECT * FROM restaurant WHERE id = ${id};`).then((data) => {
+    console.log(data);
+  });
+  dbt.any(`SELECT * FROM photos WHERE id = ${id};`).then((data) => {
+    console.log(data);
+  });
+  dbt.any(`SELECT * FROM users WHERE id = ${id};`).then((data) => {
+    console.log(data);
+  });
+  dbt.any(`SELECT * FROM avatars WHERE id = ${id};`).then((data) => {
+    console.log(data);
+  });
+  dbt.any(`SELECT * FROM dimensions WHERE id = ${id};`).then((data) => {
+    console.log(data);
+  });
+}
+
 //async function which will log a start time and and end time when the async call is completed
 let testQueryTimes = async() => {
   let start = new Date().getTime();
@@ -43,4 +61,81 @@ let testQueryTimes = async() => {
   console.log(`Time in milliseconds: ${time}m/s`);
 }
 
-testQueryTimes();
+//Testing 100 queries
+let test100QueryTimes = async() => {
+  let start = new Date().getTime();
+  let end;
+  let time;
+  let id = 10;
+  for (let i = 0; i < 100; i++) {
+    await querying1x(id.toString());
+    if (i === 99) {
+      end = new Date().getTime();
+      time = end - start;
+    }
+    id ++;
+  }
+  console.log(`One hundred queries time in milliseconds: ${time}m/s`);
+}
+
+//Testing 1000 queries
+let test1000QueryTimes = async() => {
+  let start = new Date().getTime();
+  let end;
+  let time;
+  let id = 10;
+  for (let i = 0; i < 1000; i++) {
+    await querying1x(id.toString());
+    if (i === 999) {
+      end = new Date().getTime();
+      time = end - start;
+    }
+    id ++;
+  }
+  console.log(`One thousand queries time in milliseconds: ${time}m/s`);
+}
+
+//Testing 100000 queries
+let test100000QueryTimes = async() => {
+  let start = new Date().getTime();
+  let end;
+  let time;
+  let id = 10;
+  for (let i = 0; i < 100000; i++) {
+    await querying1x(id.toString());
+    if (i === 99999) {
+      end = new Date().getTime();
+      time = end - start;
+    }
+    id ++;
+  }
+  console.log(`One hundred thousand queries time in milliseconds: ${time}m/s`);
+}
+
+//Testing 1000000 queries
+let test1000000QueryTimes = async() => {
+  let start = new Date().getTime();
+  let end;
+  let time;
+  let id = 10;
+  for (let i = 0; i < 1000000; i++) {
+    await querying1x(id.toString());
+    if (i === 999999) {
+      end = new Date().getTime();
+      time = end - start;
+    }
+    id ++;
+  }
+  console.log(`One million queries time in milliseconds: ${time}m/s`);
+}
+
+let execute = async () => {
+  await testQueryTimes();
+  await test100QueryTimes();
+  await test1000QueryTimes();
+  await test100000QueryTimes();
+  await test1000000QueryTimes();
+  console.log('finished executing all query test functions');
+}
+
+execute();
