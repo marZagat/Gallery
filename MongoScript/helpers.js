@@ -4,59 +4,57 @@ const MongoClient = require('mongodb').MongoClient;
 //generate random width
 let dimensions = () => {
   //coorsponding image sizes will be matched at indexs in both arrays
-  let width = [640, 1024, 1280, 1504, 1632, 2000, 2240, 2275, 2272, 2590, 3008, 4256,4536, 5782];
-  let height = [480, 768, 960, 1000, 1224, 1312, 1488, 1520, 1704, 1920, 2000, 2848, 3024, 3946];
-  let index = Math.floor(Math.random() * 14 + 1);
+  let width = [640, 1024, 1280, 1504, 1632];
+  let height = [480, 768, 960, 1000, 1224];
+  let index = Math.floor(Math.random() * 5 + 1);
   let pair = [width[index], height[index]];
   return pair;
 }
 
 let URL = () => {
-  let urls = ['https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?w=1260&h=750&dpr=3&auto=compress&cs=tinysrgb', 
-    'https://images.pexels.com/photos/5938/food-salad-healthy-lunch.jpg?w=940&h=650&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/710916/pexels-photo-710916.jpeg?w=940&h=650&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/76093/pexels-photo-76093.jpeg?w=940&h=650&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg?w=940&h=650&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?w=940&h=650&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/162971/potatoes-french-mourning-funny-162971.jpeg?h=350&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/8500/food-dinner-pasta-spaghetti-8500.jpg?w=940&h=650&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/5876/food-salad-healthy-vegetables.jpg?h=350&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/769289/pexels-photo-769289.jpeg?h=350&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/262959/pexels-photo-262959.jpeg?h=350&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/111130/potatoes-ketchup-murder-blood-111130.jpeg?h=350&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/103886/pexels-photo-103886.jpeg?h=350&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/691114/pexels-photo-691114.jpeg?h=350&dpr=2&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/209459/pexels-photo-209459.jpeg?h=350&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/8572/food-chicken-meat-outdoors.jpg?h=350&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/156114/pexels-photo-156114.jpeg?w=940&h=650&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/2238/animal-dog-pet-dangerous.jpg?h=350&auto=compress&cs=tinysrgb'
-    ];
+  let urls = ['https://bit.ly/2HZKiiO', 
+              'https://bit.ly/2oda5i0',
+              'https://bit.ly/2FWTqbk',
+              'https://bit.ly/2I0nM9E',
+              'https://bit.ly/2DQ8qBY',
+              'https://bit.ly/2G1IPw0',
+              'https://bit.ly/2ILNxM4',
+              'https://bit.ly/2ufoygX',
+              'https://bit.ly/2pzRZFt',
+              'https://bit.ly/2HZKzCm',
+              'https://bit.ly/2G94nCY',
+              'https://bit.ly/2G6VhX0',
+              'https://bit.ly/2pzUnMJ',
+              'https://bit.ly/2pAc5ia',
+              'https://bit.ly/2pyxpp8',
+              'https://bit.ly/2GgSFcC',
+              'https://bit.ly/2FYXuYI',
+              'https://bit.ly/2IK3SRk'
+              ];
   let index = Math.floor(Math.random() * urls.length + 1);
-  // let arrayURL = [urls[index], urls[index], urls[index], urls[index],urls[index],
-  // urls[index], urls[index], urls[index], urls[index],urls[index]];
   return urls[index];
 }
 
 let avatars = () => {
-  let urls = ['https://images.pexels.com/photos/8700/wall-animal-dog-pet.jpg?h=350&auto=compress&cs=tinysrgb', 
-    'https://images.pexels.com/photos/551628/pexels-photo-551628.jpeg?h=350&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/460823/pexels-photo-460823.jpeg?h=350&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/159541/wildlife-photography-pet-photography-dog-animal-159541.jpeg?h=350&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/356378/pexels-photo-356378.jpeg?h=350&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/97082/weimaraner-puppy-dog-snout-97082.jpeg?h=350&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/422220/pexels-photo-422220.jpeg?h=350&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/485294/pexels-photo-485294.jpeg?h=350&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/89775/dog-hovawart-black-pet-89775.jpeg?h=350&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/92380/pexels-photo-92380.jpeg?h=350&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/733416/pexels-photo-733416.jpeg?h=350&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/159692/dog-training-joy-fun-159692.jpeg?h=350&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/374908/pexels-photo-374908.jpeg?h=350&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/7720/night-animal-dog-pet.jpg?h=350&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/59969/papillon-dog-animal-59969.jpeg?h=350&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/127028/pexels-photo-127028.jpeg?h=350&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/54632/cat-animal-eyes-grey-54632.jpeg?h=350&auto=compress&cs=tinysrgb',
-    'https://images.pexels.com/photos/137049/pexels-photo-137049.jpeg?h=350&auto=compress&cs=tinysrgb'
-    ];
+  let urls = ['https://bit.ly/2DPUTdO', 
+              'https://bit.ly/2B9o9hL',
+              'https://bit.ly/2z3UogX',
+              'https://bit.ly/2IMUgFx',
+              'https://bit.ly/2msIgiK',
+              'https://bit.ly/2HVSpwP',
+              'https://bit.ly/2pCjy0p',
+              'https://bit.ly/2ugdqQL',
+              'https://bit.ly/2pzTBP1',
+              'https://bit.ly/2pzJslX',
+              'https://bit.ly/2DNCaPP',
+              'https://bit.ly/2ukC6YA',
+              'https://bit.ly/2I1QPcD',
+              'https://bit.ly/2pxifk8',
+              'https://bit.ly/2pATW3H',
+              'https://bit.ly/2IP3S2i',
+              'https://bit.ly/2FWUR9I',
+              'https://bit.ly/2I21VP9'
+              ];
   let index = Math.floor(Math.random() * urls.length + 1);
   // let arrayURL = [urls[index], urls[index], urls[index], urls[index],urls[index]];
   return urls[index];
@@ -74,7 +72,6 @@ let generate = (id) => {
     for (let k = 0; k < 10000; k++) {
       let item = {
         place_id: id,
-        photo_id: id,
         place_name: faker.company.companyName(),
         photos: [],
         reviews: []
@@ -121,7 +118,6 @@ let generate2 = (id) => {
     for (let k = 0; k < 10000; k++) {
       let item = {
         place_id: id,
-        photo_id: id,
         place_name: faker.company.companyName(),
         photos: [],
         reviews: []
@@ -168,7 +164,6 @@ let generate3 = (id) => {
     for (let k = 0; k < 10000; k++) {
       let item = {
         place_id: id,
-        photo_id: id,
         place_name: faker.company.companyName(),
         photos: [],
         reviews: []

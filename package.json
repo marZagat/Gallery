@@ -38,6 +38,7 @@
     "react-native": "^0.53.3",
     "react-photo-gallery": "^6.0.22",
     "react-responsive-modal": "^2.0.1",
+    "redis": "^2.8.0",
     "request": "^2.83.0",
     "request-promise": "^4.2.2"
   },
