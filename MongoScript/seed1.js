@@ -28,6 +28,7 @@ let create = async() => {
     await items(id_gen);
     console.log(`done with ${i}`);
     id_gen = id_gen + 10000;
+    console.log(id_gen);
   }
   client.close();
 }
