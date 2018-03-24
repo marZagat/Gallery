@@ -10,7 +10,7 @@ let fetchOne = (id, callback) => {
     if (err) throw err;
     db = client.db('photos');
   
-    db.collection('photos').find(query).toArray((err, result) => {
+    db.collection('photos').find(query, {_id: 0}).toArray((err, result) => {
       if (err) throw err;
       client.close();
       callback(err, result[0]);
