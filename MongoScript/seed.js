@@ -10,33 +10,32 @@ MongoClient.connect(url, function(err, client, db) {
   if (err) throw err;
   db = client.db('photos');
 
-//create a promise for the generation
-let items = (id) => {
-  return new Promise((resolve, reject) => {
-    let data = helper.generate(id);
+  //create a promise for the generation
+  let items = (id) => {
+    return new Promise((resolve, reject) => {
+      let data = helper.generate(id);
 
-      if (err) throw err;
-      db = client.db('photos');
-        db.collection("photos").insertMany(data, function(err, res) {
-          data = [];
-          if (err) throw err;
-          console.log("1 iteration inserted");
-          resolve();
-          // db.close();
-        });
-    });
-}
-
-let create = async() => {
-  let id_gen = 0;
-  for (let i = 0; i < 1000; i++) {
-    await items(id_gen);
-    console.log(`done with ${i}`);
+        if (err) throw err;
+        db = client.db('photos');
+          db.collection("photos").insertMany(data, function(err, res) {
+            data = [];
+            if (err) throw err;
+            console.log("1 iteration inserted");
+            resolve();
+          });
+      });
   }
-}
+  let id_gen = 0;
+  let create = async() => {
+    for (let i = 0; i < 1000; i++) {
+      await items(id_gen);
+      console.log(`done with ${i}`);
+      id_gen = id_gen + 10000;
+    }
+    client.close();
+  }
 
-create()
+  create()
 
-console.log('done seeding');
-//need to add a closing script 
+  console.log('done seeding');
 });
