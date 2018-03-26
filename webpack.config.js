@@ -3,7 +3,7 @@ const path = require('path');
 const SRC_DIR = path.join(__dirname, '/client/src');
 const DIST_DIR = path.join(__dirname, '/client/dist');
 
-module.exports = {
+const common = {
   entry: './client/src/index.jsx',
   output: {
     filename: 'bundle.js',
@@ -32,3 +32,26 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
 };
+
+const client = {
+  entry:
+  output: {
+    path: 
+    filename:
+  }
+};
+
+const server = {
+  entry:
+  target: 
+  output: {
+    path:
+    filename:
+    libraryTarget:
+  }
+}
+
+module.exports = [
+  Object.assign({}, common, client),
+  Object.assign({}, common, server)
+];
