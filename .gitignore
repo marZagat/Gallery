@@ -30,6 +30,7 @@ config.js
 
 # bundle 
 client/dist/bundle.js
+client/dist/bundle-server.js
 
 #newrelic
 newrelic.js

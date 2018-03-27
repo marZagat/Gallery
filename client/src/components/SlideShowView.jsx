@@ -6,13 +6,14 @@ function SlideShowView(props) {
   const gridViewButton = ( // for future modal grid gallery view
     <button
       className="grid-view-button"
+      style={{position:'fixed', left:'90%', backgroundColor:'transparent', border:'none', color:'white', fontWeight:'900', borderRadius:'50%', padding:'10px'}}
       onClick={() => props.gridButtonClick()}
     ><i className="fa fa-th fa-2x" />
     </button>);
 
   const name = props.placeName.toUpperCase();
-  const placeName = <div className="place-name">{name}</div>;
-  const photoCounter = <div className="slideshow-counter">{props.current + 1} of {props.photos.length}</div>;
+  const placeName = <div className="place-name" style={{fontFamily:`'Raleway', 'sans-serif'`, letterSpacing:'.15em', fontSize:'18px', fontWeight:'400', color:'white', width:'100%', position:'fixed', left:'35%', top:'30px', zIndex: '1000', backgroundColor:'black'}}>{name}</div>;
+  const photoCounter = <div className="slideshow-counter" style={{fontFamily:`'Raleway', 'sans-serif`, fontWeight:'100px', color:'white', fontSize:'16px', position:'fixed', left:'85%', top:'30px'}}>{props.current + 1} of {props.photos.length}</div>;
 
   return (
     <div id="slideshow">

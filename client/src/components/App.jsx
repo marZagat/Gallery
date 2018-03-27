@@ -4,7 +4,7 @@ import Gallery from '../../../lib/react-photo-gallery';
 import SlideShowView from './SlideShowView';
 import TopNav from './TopNav';
 
-export default class App extends React.Component {
+class App extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -162,4 +162,5 @@ export default class App extends React.Component {
   }
 }
 
-window.App = App;
+// window.App = App;
+export default App;
