@@ -4,11 +4,6 @@ const SRC_DIR = path.join(__dirname, '/client/src');
 const DIST_DIR = path.join(__dirname, '/client/dist');
 
 const common = {
-  entry: './client/src/index.jsx',
-  output: {
-    filename: 'bundle.js',
-    path: DIST_DIR,
-  },
   module: {
     loaders: [
       {
@@ -18,14 +13,7 @@ const common = {
         query: {
           presets: ['react', 'es2015', 'stage-0'],
         },
-      },
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
-      },
+      }
     ],
   },
   resolve: {
@@ -34,20 +22,20 @@ const common = {
 };
 
 const client = {
-  entry:
+  entry: './client/src/index.jsx',
   output: {
-    path: 
-    filename:
+    path: DIST_DIR,
+    filename: 'bundle.js'
   }
 };
 
 const server = {
-  entry:
-  target: 
+  entry: './client/src/index-server.jsx',
+  target: 'node',
   output: {
-    path:
-    filename:
-    libraryTarget:
+    path: DIST_DIR,
+    filename: 'bundle-server.js',
+    libraryTarget: 'commonjs-module'
   }
 }
 
