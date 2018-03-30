@@ -1,4 +1,4 @@
-FROM node:8.9.4
+FROM node:9.7.0
 
 RUN mkdir -p /src/app
 
@@ -6,8 +6,8 @@ WORKDIR /src/app
 
 COPY . /src/app
 
-RUN yarn install
+RUN npm install
 
-EXPOSE 3001
+EXPOSE 2222
 
-CMD [ "yarn", "start" ]
+CMD npm run start

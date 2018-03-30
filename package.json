@@ -8,7 +8,7 @@
     "react-dev": "webpack -d --watch",
     "seed": "node data/seed.js",
     "test": "jest",
-    "start": "node MongoScript/seed.js && node server/index.js",
+    "start": "node server/index.js",
     "localtest": "node data/seed.js && node server/index.js"
   },
   "author": "",
@@ -25,6 +25,7 @@
     "mongoose": "^5.0.6",
     "mysql": "^2.15.0",
     "newrelic": "^3.2.0",
+    "node-cmd": "^3.0.0",
     "pg": "^7.4.1",
     "pg-promise": "^8.2.2",
     "prop-types": "^15.6.1",

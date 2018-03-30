@@ -34,3 +34,6 @@ client/dist/bundle-server.js
 
 #newrelic
 newrelic.js
+
+#test Mongo Script
+MongoScript/newSeed.js

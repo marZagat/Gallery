@@ -4,9 +4,10 @@ services:
   gallery:
     build: .
     depends_on:
-      - 'database'
+      - 'redis'
     ports:
-      - '80:3001'
+      - '2222:2222'
+  
+  redis: 
+    image: redis:4.0.8
 
-  database:
-    image: mongo:3.6.2
