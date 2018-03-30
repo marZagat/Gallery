@@ -10,34 +10,44 @@ const MongoClient = require('mongodb').MongoClient;
 const redis = require('redis');
 const cluster = require('cluster');
 
+const DOCKER = `database`;
+const LOCAL = `localhost`;
+const url = `mongodb://${LOCAL}:27017`;
+
 //connect to MongoClient
-MongoClient.connect('mongodb://localhost:27017');
+MongoClient.connect(url);
+
+console.log('this is the server page url: ', url); // debugging statement 
 
 const Photos = require('../database/index.js');
 
 //cluster setup
-if (cluster.isMaster) {
-  let numWorkers = require('os').cpus().length;
+// if (cluster.isMaster) {
+//   let numWorkers = require('os').cpus().length;
 
-  console.log('Master cluster setting up ' + numWorkers + ' workers...');
+//   console.log('Master cluster setting up ' + numWorkers + ' workers...');
 
-  for (let i = 0; i < numWorkers; i++) {
-      cluster.fork();
-  }
+//   for (let i = 0; i < numWorkers; i++) {
+//       cluster.fork();
+//   }
 
-  cluster.on('online', (worker) => {
-      console.log('Worker ' + worker.process.pid + ' is online');
-  });
+//   cluster.on('online', (worker) => {
+//       console.log('Worker ' + worker.process.pid + ' is online');
+//   });
 
-  cluster.on('exit', (worker, code, signal) => {
-      console.log('Worker ' + worker.process.pid + ' died with code: ' + code + ', and signal: ' + signal);
-      console.log('Starting a new worker');
-      cluster.fork();
-  });
-} else {
+//   cluster.on('exit', (worker, code, signal) => {
+//       console.log('Worker ' + worker.process.pid + ' died with code: ' + code + ', and signal: ' + signal);
+//       console.log('Starting a new worker');
+//       cluster.fork();
+//   });
+// } else {
   const app = express();
 
-  const client = redis.createClient(6379);
+  // const client = redis.createClient(6379);
+
+  const client = redis.createClient({
+    host: 'redis'
+  });
 
   app.use(cors());
 
@@ -80,6 +90,6 @@ if (cluster.isMaster) {
   });
 
   app.listen(2222, () => console.log('Gallery App listening on port 2222!'));
-}
+// }
 
 // module.exports = app;
